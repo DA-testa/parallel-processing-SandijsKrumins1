@@ -4,11 +4,10 @@ def parallel_processing(n, m, data):
     output = []
     workers= [0]*n
     for job in data:
-        for i in range(1,n):
-            if workers[i]<workers[i-1]:
+        s_index = n-1
+        for i in reversed(range(n)):
+            if workers[i] <= workers[s_index]:
                 s_index = i
-            else:
-                s_index = i-1
         output.append((s_index,workers[s_index]))
         workers[s_index]+=job
 
